@@ -1,0 +1,59 @@
+<!-- Zenotica Coming Soon widget. Paste into a Simvoly custom code / embed (HTML) block. Self-contained, no dependencies. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:wght@400&display=swap">
+<style>
+.zn-cs{--zn-gold:#b68235;--zn-gold-d:#7d5411;--zn-ink:#201f1d;--zn-mute:#605d5d;box-sizing:border-box;width:100%;max-width:640px;margin:0 auto;padding:24px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--zn-ink);font-family:"Lora",Georgia,serif;background:transparent}
+.zn-cs *{box-sizing:border-box}
+.zn-cs__art{position:relative;width:100%;max-width:550px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.zn-cs__svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:zn-breathe 9s ease-in-out infinite}
+.zn-cs__txt{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 15%}
+.zn-cs__kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--zn-gold-d)}
+.zn-cs__h{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:clamp(40px,9vw,60px);line-height:1.05;letter-spacing:.01em;color:var(--zn-ink)}
+.zn-cs__p{max-width:520px;margin:40px 0 0;font-size:18px;line-height:1.6;text-wrap:pretty}
+.zn-cs__rule{width:64px;height:1px;background:var(--zn-gold);margin:40px 0}
+.zn-cs__sub{max-width:520px;font-size:16px;line-height:1.6;color:var(--zn-mute);text-wrap:pretty}
+.zn-cs__form{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px;width:min(480px,100%)}
+.zn-cs__in{flex:1 1 220px;min-width:0;padding:11px 14px;font:14px "Lora",Georgia,serif;color:var(--zn-ink);background:#fff;border:1px solid rgba(32,31,29,.25);border-radius:2px}
+.zn-cs__in:focus{outline:2px solid var(--zn-gold);outline-offset:1px}
+.zn-cs__btn{padding:11px 22px;font:600 15px "Cormorant Garamond",Georgia,serif;color:var(--zn-ink);background:var(--zn-gold);border:1px solid var(--zn-gold);border-radius:2px;cursor:pointer}
+.zn-cs__btn:hover{background:#c28d41}
+@keyframes zn-breathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.03);opacity:1}}
+@keyframes zn-turn{to{transform:rotate(360deg)}}
+@keyframes zn-turnr{to{transform:rotate(-360deg)}}
+@media (prefers-reduced-motion:reduce){.zn-cs__svg{animation:none}}
+</style>
+<div class="zn-cs">
+  <div class="zn-cs__art">
+    <svg class="zn-cs__svg" viewBox="-50 -50 500 500" fill="none" stroke="#b68235" stroke-width="1" aria-hidden="true">
+      <circle cx="200" cy="200" r="196"></circle>
+      <circle cx="200" cy="200" r="150" stroke-opacity=".6"></circle>
+      <g stroke-opacity=".55"><animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="240s" repeatCount="indefinite"></animateTransform>
+        <polygon points="200,-40 369.7,30.3 440,200 369.7,369.7 200,440 30.3,369.7 -40,200 30.3,30.3"></polygon>
+        <polygon points="200,-18 354,46 418,200 354,354 200,418 46,354 -18,200 46,46" stroke-opacity=".5"></polygon>
+      </g>
+      <g stroke-width="2" stroke-opacity=".7"><animateTransform attributeName="transform" type="rotate" from="0 200 200" to="-360 200 200" dur="120s" repeatCount="indefinite"></animateTransform>
+        <g><path d="M190 16H210M190 26H210M190 36H210"></path></g>
+        <g transform="rotate(45 200 200)"><path d="M190 16H210M190 26H210M190 36H197M203 36H210"></path></g>
+        <g transform="rotate(90 200 200)"><path d="M190 16H197M203 16H210M190 26H210M190 36H197M203 36H210"></path></g>
+        <g transform="rotate(135 200 200)"><path d="M190 16H210M190 26H197M203 26H210M190 36H197M203 36H210"></path></g>
+        <g transform="rotate(180 200 200)"><path d="M190 16H197M203 16H210M190 26H197M203 26H210M190 36H197M203 36H210"></path></g>
+        <g transform="rotate(225 200 200)"><path d="M190 16H197M203 16H210M190 26H197M203 26H210M190 36H210"></path></g>
+        <g transform="rotate(270 200 200)"><path d="M190 16H210M190 26H197M203 26H210M190 36H210"></path></g>
+        <g transform="rotate(315 200 200)"><path d="M190 16H197M203 16H210M190 26H210M190 36H210"></path></g>
+      </g>
+      <g><animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="60s" repeatCount="indefinite"></animateTransform><circle cx="200" cy="50" r="3" fill="#b68235" stroke="none"></circle></g>
+      <circle cx="200" cy="4" r="3" fill="#b68235" stroke="none"></circle>
+      <circle cx="200" cy="396" r="3" fill="#b68235" stroke="none"></circle>
+    </svg>
+    <div class="zn-cs__txt">
+      <div class="zn-cs__kick">A new space is opening</div>
+      <h2 class="zn-cs__h">Coming<br><em>Soon</em></h2>
+    </div>
+  </div>
+  <p class="zn-cs__p">Dynamic visual brands and harmonious spaces. The new Zenotica® website is being prepared with the same care we give every brand.</p>
+  <div class="zn-cs__rule"></div>
+  <div class="zn-cs__sub">Receive practical Good Shui tips and the opening announcement.</div>
+  <form class="zn-cs__form" action="http://eepurl.com/c-yhkD" target="_blank">
+    <input class="zn-cs__in" type="email" placeholder="Your email address" aria-label="Email address">
+    <button class="zn-cs__btn" type="submit">Notify me</button>
+  </form>
+</div>
