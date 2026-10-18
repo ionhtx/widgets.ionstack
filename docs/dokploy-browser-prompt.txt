@@ -1,0 +1,24 @@
+Deploy my widget platform on my Dokploy panel (I'm already logged in, in this browser). Work in a new tab. Don't delete anything. Don't change any project or app other than the ones named below. If a screen doesn't match these steps, stop and ask me.
+
+GOAL: run the app from GitHub repo ionhtx/widgets.ionstack (public) at https://widgets.ionstack.dev
+
+1. Open the project "zenotica-widgets" (create it if it doesn't exist).
+2. Create a new Application named "widgets-platform" in that project.
+3. Source / Provider:
+   - If a GitHub provider is connected, choose GitHub → repository ionhtx/widgets.ionstack → branch main.
+   - Otherwise choose "Git" with URL https://github.com/ionhtx/widgets.ionstack.git and branch main.
+   Build type: Dockerfile, Dockerfile path: ./Dockerfile. Save.
+4. Environment tab: add these two variables, then STOP and let me type the values myself (don't type or read back the password):
+   PB_ADMIN_EMAIL=
+   PB_ADMIN_PASSWORD=
+   (I'll use at least 10 characters for the password.) Save once I tell you I'm done.
+5. Advanced tab → Mounts / Volumes → Add mount → type "Volume". Volume name: widgets-pb-data. Mount path: /pb/pb_data. Save. (This keeps the database across redeploys. Don't skip it.)
+6. The old app "coming-soon-widget" in this project may already be using the domain widgets.ionstack.dev. If it is, open that app's Domains tab, tell me, and after I say OK, remove the domain from that app only, then stop that app (Stop, not Delete).
+7. In "widgets-platform" → Domains tab → Add domain: host widgets.ionstack.dev, path /, container port 8090, HTTPS on with Let's Encrypt. Save.
+8. Click Deploy and wait until it succeeds. If it fails, open the build/deploy logs and tell me the error lines.
+9. Check these URLs in new tabs and report what you see:
+   - https://widgets.ionstack.dev/w/zenotica-coming-soon.json  → JSON starting with {"settings":
+   - https://widgets.ionstack.dev/editor/  → a login form titled "ionstack widgets"
+   - https://widgets.ionstack.dev/zenotica-coming-soon.js  → JavaScript starting with /*! Legacy embed
+10. If Dokploy offers auto-deploy on push (a webhook or "Autodeploy" toggle), turn it on and tell me.
+11. Reply with a short summary: the app's status, the three URL checks, and whether auto-deploy is on.
