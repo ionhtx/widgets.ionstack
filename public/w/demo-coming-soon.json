@@ -1,0 +1,14 @@
+{
+  "type": "coming-soon",
+  "settings": {
+    "kicker": "Launching this winter",
+    "title": "Almost",
+    "titleItalic": "there",
+    "body": "A second widget from the same code, configured only by this settings file.",
+    "showDivider": false,
+    "accent": "#2f6f62",
+    "accentDark": "#1d4a41",
+    "headingFont": "Playfair Display",
+    "bodyFont": "DM Sans"
+  }
+}

@@ -1,25 +1,39 @@
-# CODING AGENTS: READ THIS FIRST
+# ionstack widgets
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+My own Elfsight-style embeddable widgets, served from https://widgets.ionstack.dev.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Embed
 
-## What you should do — IMPORTANT
+```html
+<script src="https://widgets.ionstack.dev/platform.js" async></script>
+<div class="ion-widget" data-id="WIDGET_ID"></div>
+```
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+Several widgets on one page share one `platform.js`. Old Zenotica embeds (`zenotica-coming-soon.js` + `<div class="zenotica-coming-soon">`) keep working through a shim.
 
-**Read `project/zenotica-coming-soon-widget.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## How it works
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+| Path | What it is |
+|---|---|
+| `public/platform.js` | Loader. Finds `.ion-widget` placeholders, fetches `w/<id>.json`, loads `types/<type>.js` once and renders inside a Shadow DOM (host theme CSS can't leak in). Validates settings against the type's schema, loads Google Fonts, pauses SVG animation for reduced-motion visitors, and picks up placeholders inserted later by page builders. |
+| `public/types/<type>.js` | A widget type: `IonWidgets.define(name, { schema, render(settings, ui), mount? })`. The `schema` lists each setting (`text`, `textarea`, `toggle`, `color`, `url`, `number`, `select`, `font`, `datetime`) with its default. The step 2 editor builds its form from it. |
+| `public/w/<id>.json` | One widget: `{ "type": "...", "settings": { ... } }`. Missing or invalid settings fall back to defaults. |
+| `public/demo.html` | Test page with deliberately clashing theme CSS. |
+| `Dockerfile`, `nginx.conf` | Static hosting on Dokploy. Settings are served `no-cache`, so edits show on the next page load. |
+| `design/` | The original Claude Design export (Zenotica Coming Soon). |
+| `docs/` | Kickoff brief and earlier deploy notes. |
 
-## About the design files
+### Add a widget
+Add `public/w/<new-id>.json` with a `type` and the settings you want to change. No code changes needed.
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+### Run locally
+```bash
+cd public && python3 -m http.server 8765   # open http://localhost:8765/demo.html
+```
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+## Roadmap (lean: each step ends in a working demo)
+1. **Loader + widget format.** Coming Soon is type #1. ✅
+2. **PocketBase + editor:** login, widget list, settings form generated from the schema, live preview, Save, Copy embed code.
+3. **Promo widgets:** banner/top bar, popup, countdown.
 
-## Bundle contents
-
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Zenotica Coming Soon redesign` project files (HTML prototypes, assets, components)
+Out of scope: form/lead-capture widgets (the site builder handles those), client accounts, billing.
