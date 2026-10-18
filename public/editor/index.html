@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Widget Editor</title>
+<link rel="stylesheet" href="editor.css">
+<script src="../platform.js"></script>
+</head>
+<body>
+
+<section id="login" class="login" hidden>
+  <form id="login-form" class="card">
+    <h1>ionstack widgets</h1>
+    <label>Email <input name="identity" type="email" autocomplete="username" required></label>
+    <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">Log in</button>
+    <p class="error" id="login-error" role="alert"></p>
+  </form>
+</section>
+
+<div id="app" class="app" hidden>
+  <header class="top">
+    <strong>ionstack widgets</strong>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="logout" type="button">Log out</button>
+  </header>
+
+  <aside class="list">
+    <button class="btn primary block" id="new" type="button">+ New widget</button>
+    <ul id="widgets"></ul>
+  </aside>
+
+  <main class="editor" id="editor">
+    <p class="empty" id="empty">Pick a widget, or create a new one.</p>
+    <div id="panel" hidden>
+      <div class="actions">
+        <button class="btn primary" id="save" type="button" disabled>Save</button>
+        <span class="status" id="status" role="status"></span>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="duplicate" type="button">Duplicate</button>
+        <button class="btn ghost danger" id="delete" type="button">Delete</button>
+      </div>
+      <fieldset>
+        <legend>Widget</legend>
+        <div class="field"><label for="w-name">Name (only you see this)</label><input id="w-name" type="text" maxlength="120"></div>
+        <div class="field"><label>ID and type</label><div class="readonly" id="w-meta"></div></div>
+        <div class="field">
+          <label for="embed">Embed code</label>
+          <textarea id="embed" class="code" rows="4" readonly></textarea>
+          <button class="btn small" id="copy" type="button">Copy embed code</button>
+        </div>
+      </fieldset>
+      <div id="fields"></div>
+    </div>
+  </main>
+
+  <section class="preview">
+    <div class="preview-bar">
+      <span>Preview</span>
+      <span class="spacer"></span>
+      <div class="seg" id="width-seg" role="group" aria-label="Preview width">
+        <button type="button" data-w="100%" class="on">Desktop</button>
+        <button type="button" data-w="375px">Mobile</button>
+      </div>
+      <div class="seg" id="bg-seg" role="group" aria-label="Preview background">
+        <button type="button" data-bg="#ffffff" class="on">White</button>
+        <button type="button" data-bg="#f3f2f2">Light</button>
+        <button type="button" data-bg="#1d1d1f">Dark</button>
+      </div>
+    </div>
+    <div class="stage" id="stage"><div class="frame" id="frame"><div id="preview"></div></div></div>
+  </section>
+</div>
+
+<dialog id="new-dialog">
+  <form id="new-form" method="dialog" class="card">
+    <h2 id="new-title">New widget</h2>
+    <label>Name <input name="name" type="text" maxlength="120" required placeholder="Client — Coming Soon"></label>
+    <label>ID (used in the embed code; can't be changed later)
+      <input name="slug" type="text" maxlength="64" required pattern="[a-z0-9-]+" placeholder="client-coming-soon">
+    </label>
+    <label>Type <select name="type" id="new-type"></select></label>
+    <p class="error" id="new-error" role="alert"></p>
+    <div class="row">
+      <button class="btn ghost" value="cancel" formnovalidate type="submit">Cancel</button>
+      <button class="btn primary" value="create" type="submit">Create</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="editor.js"></script>
+</body>
+</html>
